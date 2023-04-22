@@ -1,0 +1,26 @@
+@import '../layouts/nav--login-signup';
+@import '../base/variables';
+@import '../components/form--login-signup';
+
+
+
+.LoginSignup--Main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-color-grey;
+    height: 90vh;
+    
+    .titles {
+        margin: auto;
+        h1 {
+            font-size: 4rem;
+            color: white;
+        }
+    }
+
+    .login-registration-block{
+        width: 35%;
+    }
+}

@@ -1,0 +1,28 @@
+// Button style without size
+@mixin button-styles {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    //font-size: $font-size;
+    color: #fff;
+    border-radius: 7px;
+    border: 1px solid $primary-color-grey;
+    &:hover {
+        box-shadow: 0 0 10px $primary-color-grey;
+    }
+}
+
+// Flex center column
+@mixin flex-center($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-center-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
