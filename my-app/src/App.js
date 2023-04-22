@@ -1,6 +1,6 @@
 import './App.css';
-import LoginSignup from './pagesjs/Login-Signup.js';
-import Signup from './pagesjs/Signup.js';
+import LoginSignup from './pages/Login-Signup.js';
+import Signup from './pages/Signup.js';
 import {Routes, Route} from 'react-router-dom';
 
 function App() {

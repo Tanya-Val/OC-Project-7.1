@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../images/logo_white.png';
+import logo from '../assets/logo_white.png';
 import './Signup'
 
 export default function LoginSignupPage() {
