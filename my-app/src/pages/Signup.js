@@ -59,12 +59,12 @@ export default function LoginSignupPage() {
                                 placeholder="Enter your password"
                                 required/>
                         </div>
-
-                        <div className="form-group_btn">
-                            <button /*onclick="location.href='signUp.html'"*/
-                                className="btn-account">Create Account
-                            </button>
-                        </div>
+                        
+                        <a href='/signup'  >
+                                <button className="btn-account" type="button">Create Account
+                                </button>
+                            </a>
+                        
                     </form>
                 </div>
             </div>

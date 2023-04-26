@@ -1,26 +1,35 @@
-@import '../components/buttons.scss';
-@import '../utils/mixins.scss';
+@import "../components/buttons.scss";
+@import "../utils/mixins.scss";
+//Email/password & buttons block
+
 
 .login-registration-block {
+    width: 35%;
     @include flex-center(column);
     margin: auto;
     background-color: $secondary-color-grey;
-    height: 20rem;
+    height: 40vh;
     border-radius: 7px;
 
+
     form {
+        
         width: 100%;
         max-width: 400px;
-
+        
+        
+        
         .form-group {
+            margin: 0.3rem;
             display: flex;
-            margin: 0 1rem 1rem;
+            justify-content: center;
+            
             input[type="email"],
             input[type="password"],
             input[type="firstName"],
             input[type="lastName"],
             input[type="departament"] {
-                width: 100%;
+                width: 80%;
                 height: 2rem;
                 border-radius: 7px;
                 border: 1px solid $primary-color-grey;
@@ -32,35 +41,8 @@
                 }
             }
         }
-
-        .form-group_btn {
-            
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin: 1rem;
-
-            button[type="submit"] {
-                @include button-styles;
-                height: 2.5rem;
-                width: 15.4rem;
-                width: 100%;
-            }
-
-            .btn-login {
-                background-color: $primary-color-blue;
-                margin-bottom: 1rem;
-                width: 100%;
-            }
-
-            .btn-account {
-                @include button-styles;
-                background-color: $primary-color-red;
-                width: 50%;
-                margin-left: 25%;
-                height: 2.5rem;
-                
-            }
-        }
     }
 }
+
+
+

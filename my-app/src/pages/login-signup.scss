@@ -1,17 +1,15 @@
-@import '../layouts/nav--login-signup';
-@import '../utils/variables';
-@import '../components/form--login-signup';
+@import "../layouts/nav--login-signup";
+@import "../utils/variables";
+@import "../components/form--login-signup";
+@import "../utils/resets.scss";
 
-
-
+//Main container
 .LoginSignup--Main {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    @include flex-center(row);
     background-color: $primary-color-grey;
     height: 90vh;
-    
+
+    //Name of the website in the main container
     .titles {
         margin: auto;
         h1 {
@@ -20,7 +18,4 @@
         }
     }
 
-    .login-registration-block{
-        width: 35%;
-    }
 }
