@@ -5,25 +5,27 @@ export default function PersonalSpacePage() {
     return (
         <div>
             {/* Navbar */}
-            <nav className="LoginSignup--Nav">
-                <img className="Login--Nav--Logo" src={logo} alt="company logo"/>
-                <a href="">
+            <nav className="PersonaSpace--Nav">
+                <img className="Login--Nav--Logo--personalpage" src={logo} alt="company logo"/>
+                <div>
+                <a href="/">
                     <span class="material-symbols-outlined">
                     home</span>
                 </a>
-                <a href="">
+                <a href="/personalspace">
                      <span class="material-symbols-outlined">
                     account_circle</span>
                 </a>
-                <a href="">
+                <a href="/">
                     <span class="material-symbols-outlined">
                     logout</span>
                 </a>
+                </div>
             </nav>
 
             {/* Main container */}
-            <div className="LoginSignup--Main">
-                <div className="login-registration-block">
+            <div className="PersonalSpace--Main">
+                <div className="personalspace-block">
                 <h1 className="login-registration-block-title">Personal Space</h1>
                     <form>
                         <div className="form-group">

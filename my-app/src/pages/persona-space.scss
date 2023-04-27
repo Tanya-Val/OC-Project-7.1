@@ -1,0 +1,11 @@
+@import "../layouts/nav--persona-space";
+@import "../utils/variables";
+@import "../components/form--personalSpace";
+@import "../utils/resets.scss";
+
+.PersonalSpace--Main {
+    @include flex-center(row);
+    background-color: $secondary-color-grey;
+    height: 90vh;
+}
+

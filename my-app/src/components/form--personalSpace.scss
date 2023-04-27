@@ -1,16 +1,18 @@
 @import "../components/buttons.scss";
 @import "../utils/mixins.scss";
 
-.login-registration-block {
+
+.personalspace-block{
     width: 35%;
     @include flex-center(column);
     margin: auto;
-    background-color: $secondary-color-grey;
+    background-color: white;
     height: 50vh;
     border-radius: 7px;
     font-size: $font-size-p;
+
     form {
- 
+        
         width: 100%;
         max-width: 400px;
         
