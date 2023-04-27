@@ -1,0 +1,11 @@
+@import "../layouts/nav--login-signup";
+@import "../utils/variables";
+@import "../components/form--login-signup";
+@import "../utils/resets.scss";
+
+
+.login-registration-block-title{
+    font-size: $font-size-h1;
+    color: $primary-color-blue;
+    
+}

@@ -1,19 +1,30 @@
-import React from 'react';
+import React from 'react'
 import logo from '../assets/logo_white.png';
 
-
-export default function LoginSignupPage() {
+export default function PersonalSpacePage() {
     return (
         <div>
             {/* Navbar */}
             <nav className="LoginSignup--Nav">
                 <img className="Login--Nav--Logo" src={logo} alt="company logo"/>
+                <a href="">
+                    <span class="material-symbols-outlined">
+                    home</span>
+                </a>
+                <a href="">
+                     <span class="material-symbols-outlined">
+                    account_circle</span>
+                </a>
+                <a href="">
+                    <span class="material-symbols-outlined">
+                    logout</span>
+                </a>
             </nav>
 
             {/* Main container */}
             <div className="LoginSignup--Main">
                 <div className="login-registration-block">
-                    <h1 className="login-registration-block-title">Sign-up</h1>
+                <h1 className="login-registration-block-title">Personal Space</h1>
                     <form>
                         <div className="form-group">
                             <input
@@ -50,20 +61,14 @@ export default function LoginSignupPage() {
                                 placeholder="Enter your email"
                                 required/>
                         </div>
-
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Enter your password"
-                                required/>
-                        </div>
-                        
-                        <a href='/personalspace' >
-                                <button className="btn-account" type="button">Create Account
-                                </button>
+                    
+                             <a href='/signup'>
+                                <button className="btn-login" type="submit" >Save Changes</button>
                             </a>
+                            <a href='/signup'>
+                                <button className="btn-account" type="button">Delete Account
+                                </button>
+                            </a> 
                         
                     </form>
                 </div>
