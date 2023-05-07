@@ -8,7 +8,7 @@ export default function PersonalSpacePage() {
             <nav className="PersonaSpace--Nav">
                 <img className="Login--Nav--Logo--personalpage" src={logo} alt="company logo"/>
                 <div>
-                <a href="/">
+                <a href="/forum">
                     <span class="material-symbols-outlined">
                     home</span>
                 </a>
