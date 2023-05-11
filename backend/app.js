@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const connection = require('./db.js');
 
 app.use((req, res, next) => {
   console.log('Request received!');
