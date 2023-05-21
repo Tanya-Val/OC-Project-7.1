@@ -1,23 +1,3 @@
-/*require('dotenv').config();
-
-const mysql = require('mysql2');
-
-const connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-});
-
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL database:', err);
-  } else {
-    console.log('Connected to MySQL database!');
-  }
-});
-module.exports = connection;*/
-
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
@@ -32,6 +12,14 @@ const connection = mysql.createPool({
 (async function updateOrCreateTables() {
   try {
     const pool = await connection.getConnection();
+    console.log('Successfully connected to MySQL.');
+
+    // Check if the database exists
+    const [databaseRows] = await pool.query('SHOW DATABASES LIKE ?', [process.env.DB_NAME]);
+    if (databaseRows.length === 0) {
+      console.error(`Database "${process.env.DB_NAME}" does not exist.`);
+      return;
+    }
 
     // Create or update "users" table
     const [usersRows] = await pool.query('SHOW TABLES LIKE "users"');
@@ -40,29 +28,17 @@ const connection = mysql.createPool({
       await pool.query(`
         CREATE TABLE users (
           userID INT NOT NULL AUTO_INCREMENT,
-          name VARCHAR(60) NOT NULL,
+          firstName VARCHAR(60) NOT NULL,
+          lastName VARCHAR(60) NOT NULL,
           email VARCHAR(60) NOT NULL,
           password VARCHAR(60) NOT NULL,
-          bio VARCHAR(500) DEFAULT NULL,
+          department VARCHAR(500) DEFAULT NULL,
           PRIMARY KEY (userID),
           UNIQUE KEY email_UNIQUE (email)
         )
       `);
     } else {
-      console.log('Dropping users table...');
-      await pool.query('DROP TABLE users');
-      console.log('Creating users table...');
-      await pool.query(`
-        CREATE TABLE users (
-          userID INT NOT NULL AUTO_INCREMENT,
-          name VARCHAR(60) NOT NULL,
-          email VARCHAR(60) NOT NULL,
-          password VARCHAR(60) NOT NULL,
-          bio VARCHAR(500) DEFAULT NULL,
-          PRIMARY KEY (userID),
-          UNIQUE KEY email_UNIQUE (email)
-        )
-      `);
+      console.log('Users table already exists.');
     }
 
     // Create or update "posts" table
@@ -73,7 +49,8 @@ const connection = mysql.createPool({
         CREATE TABLE posts (
           postID INT NOT NULL AUTO_INCREMENT,
           userID INT NOT NULL,
-          name VARCHAR(60) NOT NULL,
+          firstName VARCHAR(60) NOT NULL,
+          lastName VARCHAR(60) NOT NULL,
           media LONGBLOB,
           title VARCHAR(45) NOT NULL,
           created_date DATETIME NOT NULL,
@@ -85,24 +62,7 @@ const connection = mysql.createPool({
         )
       `);
     } else {
-      console.log('Dropping posts table...');
-      await pool.query('DROP TABLE posts');
-      console.log('Creating posts table...');
-      await pool.query(`
-        CREATE TABLE posts (
-          postID INT NOT NULL AUTO_INCREMENT,
-          userID INT NOT NULL,
-          name VARCHAR(60) NOT NULL,
-          media LONGBLOB,
-          title VARCHAR(45) NOT NULL,
-          created_date DATETIME NOT NULL,
-          updated_date DATETIME NOT NULL,
-          readBy VARCHAR(45) NOT NULL,
-          PRIMARY KEY (postID),
-          KEY userID_idx (userID),
-          CONSTRAINT userID FOREIGN KEY (userID) REFERENCES users (userID)
-        )
-      `);
+      console.log('Posts table already exists.');
     }
 
     // Create or update "comments" table
@@ -114,7 +74,8 @@ const connection = mysql.createPool({
           commentID INT NOT NULL AUTO_INCREMENT,
           postID INT NOT NULL,
           userID INT NOT NULL,
-          name VARCHAR(60) NOT NULL,
+          firstName VARCHAR(60) NOT NULL,
+          lastName VARCHAR(60) NOT NULL,
           comment VARCHAR(1000) NOT NULL,
           created_date DATETIME NOT NULL,
           modified_date DATETIME NOT NULL,
@@ -127,26 +88,7 @@ const connection = mysql.createPool({
         )
       `);
     } else {
-      console.log('Dropping comments table...');
-      await pool.query('DROP TABLE comments');
-      console.log('Creating comments table...');
-      await pool.query(`
-        CREATE TABLE comments (
-          commentID INT NOT NULL AUTO_INCREMENT,
-          postID INT NOT NULL,
-          userID INT NOT NULL,
-          name VARCHAR(60) NOT NULL,
-          comment VARCHAR(1000) NOT NULL,
-          created_date DATETIME NOT NULL,
-          modified_date DATETIME NOT NULL,
-          PRIMARY KEY (commentID),
-          UNIQUE KEY commentID_UNIQUE (commentID),
-          UNIQUE KEY postID_UNIQUE (postID),
-          UNIQUE KEY userID_UNIQUE (userID),
-          CONSTRAINT fk_comments_posts FOREIGN KEY (postID) REFERENCES posts (postID),
-          CONSTRAINT fk_comments_users FOREIGN KEY (userID) REFERENCES users (userID)
-        )
-      `);
+      console.log('Comments table already exists.');
     }
 
     console.log('Tables "users", "posts", and "comments" updated or created successfully.');
@@ -157,4 +99,3 @@ const connection = mysql.createPool({
     connection.end();
   }
 })();
-
